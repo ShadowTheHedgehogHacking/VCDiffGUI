@@ -50,7 +50,7 @@ public partial class MainWindow : Window
 		var outFile = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
 		{
 			Title = "Save patch file",
-			DefaultExtension = ".xdelta",
+			DefaultExtension = "xdelta",
 			FileTypeChoices = [FilePickerFileTypes.All]
 		});
 
