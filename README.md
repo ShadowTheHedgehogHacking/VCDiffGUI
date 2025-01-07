@@ -17,3 +17,8 @@ We used this to create our xdeltas for 2P Shadow / Shadow the Hedgehog: Reloaded
 
 `dotnet publish VCDiffGUI -c Release -r linux-x64 --self-contained true /p:PublishSingleFile=true -p:TrimMode=CopyUsed`
 
+### Credits
+
+* dreamsyntax for this GUI program
+* Metric, chyyran, & Snowflake Authors for VCDiff.Encoders.VcEncoder
+* SaturnAdvanced for testing
