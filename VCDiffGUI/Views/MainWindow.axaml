@@ -1,0 +1,25 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:VCDiffGUI.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:VCDiffGUI.Views"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="330"
+		Width="300"
+		Height="330"
+		CanResize="True"
+        x:Class="VCDiffGUI.Views.MainWindow"
+        Icon="/Assets/logo.ico"
+        Title="VCDiffGUI">
+	<StackPanel VerticalAlignment="Center">
+		<TextBlock Margin="10" HorizontalAlignment="Center" TextWrapping="Wrap" FontWeight="Bold">Simple GUI for 'VCDiff by Metric, chyyran, &amp; Snowflake Authors'.</TextBlock>
+		<TextBlock Margin="10" xml:space="preserve" TextWrapping="Wrap">This program just calls "VCDiff.Encoders.VcEncoder(source, target, output, 16, 32)".
+
+1. Select your original file
+2. Select your modified file
+3. Choose where to save the .xdelta/.vcdiff patch
+4. Wait... It can take a long time depending on what you are making a patch of!
+        </TextBlock>
+		<Button x:Name="ButtonPatcher" Margin="0,0,0,50" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="40" Click="Button_Click">Create Patch</Button>
+	</StackPanel>
+</Window>
