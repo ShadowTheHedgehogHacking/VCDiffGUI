@@ -2,6 +2,7 @@
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
 using MsBox.Avalonia.Enums;
+using System;
 using System.IO;
 
 namespace VCDiffGUI.Views;
@@ -61,19 +62,26 @@ public partial class MainWindow : Window
 			return;
 		}
 
-		using FileStream source = new FileStream(sourceFile[0].Name, FileMode.Open, FileAccess.Read);
-		using FileStream target = new FileStream(modifiedFile[0].Name, FileMode.Open, FileAccess.Read);
-		using FileStream output = new FileStream(outFile.Name, FileMode.Create, FileAccess.Write);
+		try
+		{
+			using FileStream source = new FileStream(sourceFile[0].Path.AbsolutePath, FileMode.Open, FileAccess.Read);
+			using FileStream target = new FileStream(modifiedFile[0].Path.AbsolutePath, FileMode.Open, FileAccess.Read);
+			using FileStream output = new FileStream(outFile.Path.AbsolutePath, FileMode.Create, FileAccess.Write);
 
-		using var coder = new VCDiff.Encoders.VcEncoder(source, target, output, 16, 32);
-		var result = coder.Encode();
-		_ = Utils.ShowSimpleMessage("Success", "DONE! You can now use your file!", ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Success);
+			using var coder = new VCDiff.Encoders.VcEncoder(source, target, output, 16, 32);
+			var result = coder.Encode();
+			_ = Utils.ShowSimpleMessage("Success", "DONE! You can now use your file!", ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Success);
+            source.Dispose();
+            target.Dispose();
+            output.Dispose();
+        }
+		catch (Exception ex)
+		{
+            _ = Utils.ShowSimpleMessage("Error", ex.Message + Environment.NewLine + ex.StackTrace, ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
+        }
 
-		source.Dispose();
-		target.Dispose();
-		output.Dispose();
 
-		ButtonPatcher.Content = "Create Patch";
+        ButtonPatcher.Content = "Create Patch";
 		ButtonPatcher.IsEnabled = true;
 	}
 }
