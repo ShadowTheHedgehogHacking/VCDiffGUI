@@ -64,9 +64,9 @@ public partial class MainWindow : Window
 
         try
         {
-            using FileStream source = new FileStream(sourceFile[0].Path.AbsolutePath, FileMode.Open, FileAccess.Read);
-            using FileStream target = new FileStream(modifiedFile[0].Path.AbsolutePath, FileMode.Open, FileAccess.Read);
-            using FileStream output = new FileStream(outFile.Path.AbsolutePath, FileMode.Create, FileAccess.Write);
+            using FileStream source = new FileStream(sourceFile[0].Path.LocalPath, FileMode.Open, FileAccess.Read);
+            using FileStream target = new FileStream(modifiedFile[0].Path.LocalPath, FileMode.Open, FileAccess.Read);
+            using FileStream output = new FileStream(outFile.Path.LocalPath, FileMode.Create, FileAccess.Write);
 
             using var coder = new VCDiff.Encoders.VcEncoder(source, target, output, 16, 32);
             var result = coder.Encode();
